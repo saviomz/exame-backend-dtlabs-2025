@@ -2,7 +2,7 @@ from sqlalchemy.orm import registry, Mapped, mapped_column
 from sqlalchemy import func
 from datetime import datetime
 
-# Cria o registry
+
 table_registry = registry()
 
 # Define a classe User usando o registry.mapped_as_dataclass

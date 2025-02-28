@@ -6,13 +6,13 @@ class AuthController:
     def __init__(self):
         self.pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-    # Função para verificar a senha
+    
     def verify_password(self, plain_password, stored_password):
         return plain_password == stored_password
 
-    # Função para realizar a autenticação do usuário
+    
     def authenticate_user(self, username: str, password: str):
-        # Conectar ao banco de dados
+
         conn = psycopg2.connect(
             dbname="DBdesafio",
             user="postgres",
