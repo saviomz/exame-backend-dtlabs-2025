@@ -21,3 +21,6 @@ O sistema estará disponível em: http://127.0.0.1:8000/docs#/
 
 Nesta página, você encontrará os três endpoints implementados, conforme especificado na documentação.
 
+A aplicação em questão recebe as informações de cadastro do usuário, após efetuar o login, gera um token. 
+Logo acima, os dados retornam as informações dos servidores cadastrados via banco.
+
