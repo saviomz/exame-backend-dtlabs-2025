@@ -1,35 +1,34 @@
-DADOS = [
-    {
-        "server_id": "Servidor 1",
-        "server_ulid": "01JMG0J6BH9JV08PKJD5GSRM84",
-        "timestamp": "2025-02-26T10:00:00Z",
-        "sensor_type": "temperature",
-        "Value": "30.0",
-        "unit": "°C"
+from Controller.AuthController import AuthController  
+from typing import List, Dict
 
-    },
-    {
-        "server_id": "Servidor 1",
-        "server_ulid": "01JMG0J6BH9JV08PKJD5GSRM84",
-        "timestamp": "2025-02-26T10:00:00Z",
-        "sensor_type": "humidity",
-        "Value": "60.2",
-        "unit": "%",
-    },
-    {
-        "server_id": "Servidor 2",
-        "server_ulid": "01JMG0J6BH9JV08PKJD5GSRM86",
-        "timestamp": "2025-02-26T10:02:00Z",
-        "sensor_type": "voltage",
-        "value": "220.0",
-        "unit": "V"
-    },
-    {
-        "server_id": "Servidor 2",
-        "server_ulid": "01JMG0J6BH9JV08PKJD5GSRM86",
-        "timestamp": "2025-02-26T10:02:00Z",
-        "sensor_type": "current",
-        "value": "1.4",
-        "unit": "A"
-    }
-]
+
+auth_controller = AuthController()
+
+# Function to fetch data from servers
+def get_dados_do_banco() -> List[Dict]:
+    try:
+        with auth_controller.conn.cursor() as cursor:
+            # Perform SELECT on the database
+            cursor.execute("""
+                SELECT server_id, server_ulid, timestamp, sensor_type, value, unit 
+                FROM sensores;
+            """)
+
+            dados = cursor.fetchall()
+
+            dados_formatados = [
+                {
+                    "server_id": row[0],
+                    "server_ulid": row[1],
+                    "timestamp": row[2].isoformat(),  
+                    "sensor_type": row[3],
+                    "value": row[4],
+                    "unit": row[5]
+                }
+                for row in dados
+            ]
+
+            return dados_formatados
+    except Exception as e:
+        print(f"Erro ao buscar dados: {e}")
+        return []
