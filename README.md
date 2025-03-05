@@ -24,3 +24,5 @@ Nesta página, você encontrará os três endpoints implementados, conforme espe
 A aplicação em questão recebe as informações de cadastro do usuário, após efetuar o login, gera um token. 
 Logo acima, os dados retornam as informações dos servidores cadastrados via banco.
 
+Com muita pesquisa e estudo desenvolvi essa aplicação, mesmo não estando perfeita espero que supra as necessidades da vaga para estagiário.
+
